@@ -8,7 +8,7 @@ A vaga é para Desenvolvedor Java, temos vagas com diversos níveis de seniorida
 Se você for aprovado nesta etapa, será convidado para uma entrevista final com nosso time técnico.
 
 ### Desafio Técnico
-  O desafio consiste na criação de um sistema básico de controle de limite de crédito de conta corrent, neste sistema poderemos cadastrar uma pessoa, criar e alterar vários limites de crédito para esta pessoa, realizar lançamentos de crédito(pagamento) e débito(compra) para este limite. É necessário que para os lancamentos de débito seja validado se há limite disponível.
+  O desafio consiste na criação de um sistema básico de controle de limite de crédito de conta corrente, neste sistema poderemos cadastrar uma pessoa, criar e alterar vários limites de crédito para esta pessoa, realizar lançamentos de crédito(pagamento) e débito(compra) para este limite. É necessário que para os lancamentos de débito seja validado se há limite disponível.
   - Pré-requisitos:
     ```
     * Desenvolver os recursos em API Rest;
