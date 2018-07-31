@@ -1,7 +1,7 @@
 # Conductor: Desafio Limites
 
 ## Sobre a Atividade
-Este repositório contém a atividade proposta no arquivo DOC.md
+Este repositório contém a atividade proposta [neste arquivo](https://github.com/nycholassousa/desafio-limites/blob/master/DOC.md)
 
 ## Requisitos
 
