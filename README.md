@@ -1,7 +1,7 @@
 # Conductor: Desafio Limites
 
 ## Sobre a Atividade
-Este repositório contém a atividade proposta [neste arquivo](https://github.com/nycholassousa/desafio-limites/blob/master/DOC.md)
+Este repositório contém a atividade proposta no [DOC.md](https://github.com/nycholassousa/desafio-limites/blob/master/DOC.md) fornecido.
 
 ## Requisitos
 
@@ -13,7 +13,7 @@ Este repositório contém a atividade proposta [neste arquivo](https://github.co
 
 ### Windows
 
-A atividade foi realizada utilizando a IDE Intellij, caso queira usar outra IDE, apenas importe o projeto.
+A atividade foi realizada utilizando a IDE IntelliJ, caso queira usar outra IDE, apenas importe o projeto.
 
 ### Linux
 
@@ -21,7 +21,7 @@ Para o linux, execute os seguintes comandos:
 
 ```sh
 	cd to-project
-    mvn install
+	mvn install
 	./mvnw clean package
 ```
 
@@ -52,5 +52,8 @@ Abaixo está os serviços disponíveis, para usuários e para as contas:
 
 ## Informações Adicionais
 
-Toda vez que o código é executado, é criado alguns casos de testes (usuários e contas)
+### Gerando Dados
+O arquivo [Application.java](https://github.com/nycholassousa/desafio-limites/blob/master/src/main/java/com/conductor/limites/Application.java) possui o método run(), nele irá executar duas funções: limpar e popular a database.
 
+### Scheduler
+Há dois scheduler no arquivo [ScheduledTasks](https://github.com/nycholassousa/desafio-limites/blob/master/src/main/java/com/conductor/limites/component/ScheduledTasks.java), um dos tipos é um schedule a cada 30 segundos e o outro tipo é num horário exato (12h da tarde)
