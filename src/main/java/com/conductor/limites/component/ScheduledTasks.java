@@ -16,7 +16,6 @@ public class ScheduledTasks {
     @Autowired
     AccountRepository accountRepository;
 
-
     private static final Logger log = LoggerFactory.getLogger(ScheduledTasks.class);
 
     //Choose ONE Scheduled type.
@@ -27,8 +26,10 @@ public class ScheduledTasks {
         List<Account> accounts = accountRepository.findAll();
 
         for (Account account : accounts) {
-            account.setBalance(account.getBalance() - (account.getBalance() * 0.1));
-            accountRepository.save(account);
+            if (account.getBalance() < 0) {
+                account.setBalance(account.getBalance() - (account.getBalance() * 0.1));
+                accountRepository.save(account);
+            }
         }
     }
 }

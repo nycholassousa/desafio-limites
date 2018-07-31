@@ -26,6 +26,9 @@ public class Account {
     @NotNull
     private double balance;
 
+    @NotNull
+    private double overdraft;
+
     @ManyToOne(fetch = FetchType.EAGER, optional = false)
     @JoinColumn(name = "user_id", nullable = false)
     @OnDelete(action = OnDeleteAction.CASCADE)
@@ -35,10 +38,11 @@ public class Account {
 
     }
 
-    public Account(@NotBlank String agency, @NotBlank String number, @NotNull double balance, User user) {
+    public Account(@NotBlank String agency, @NotBlank String number, @NotNull double balance, @NotNull double overdraft, User user) {
         this.agency = agency;
         this.number = number;
         this.balance = balance;
+        this.overdraft = overdraft;
         this.user = user;
     }
 
@@ -72,6 +76,14 @@ public class Account {
 
     public void setBalance(double balance) {
         this.balance = balance;
+    }
+
+    public double getOverdraft() {
+        return overdraft;
+    }
+
+    public void setOverdraft(double overdraft) {
+        this.overdraft = overdraft;
     }
 
     public User getUser() {

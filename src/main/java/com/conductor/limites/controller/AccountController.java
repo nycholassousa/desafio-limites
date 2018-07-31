@@ -49,7 +49,7 @@ public class AccountController {
     public Account debitAccount(@PathVariable(value = "id") long accountId, @Valid @RequestBody Double input) {
         Account account = accountRepository.findById(accountId).orElseThrow(() -> new ResourceNotFoundException("Account", "id", accountId));
 
-        if (account.getBalance() < input) {
+        if ((account.getBalance() + account.getOverdraft()) < input) {
             return null;
         } else {
             account.setBalance(account.getBalance() - input);

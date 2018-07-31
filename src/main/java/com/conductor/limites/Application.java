@@ -30,8 +30,8 @@ public class Application implements CommandLineRunner {
 
     @Override
     public void run(String... arg0) throws Exception {
-        //clearData();
-        //saveData();
+        clearData();
+        saveData();
     }
 
     @Transactional
@@ -75,15 +75,15 @@ public class Application implements CommandLineRunner {
         /*
          * Then store accounts with had persisted users.
          */
-        Account account1 = new Account("1234", "123456", 12.0, user1);
-        Account account2 = new Account("1237", "654987", 777.46, user1);
-        Account account3 = new Account("8971", "917674", 65.20, user2);
-        Account account4 = new Account("9870", "987321", 7.46, user3);
-        Account account5 = new Account("8978", "654987", 77.46, user4);
-        Account account6 = new Account("4532", "951753", 67.46, user5);
-        Account account7 = new Account("9234", "987159", 6.46, user6);
-        Account account8 = new Account("9157", "356987", 1.46, user7);
-        Account account9 = new Account("6570", "458267", 0.46, user7);
+        Account account1 = new Account("1234", "123456", 12.0, 300, user1);
+        Account account2 = new Account("1237", "654987", 777.46, 300,  user1);
+        Account account3 = new Account("8971", "917674", 65.20, 300,  user2);
+        Account account4 = new Account("9870", "987321", 7.46, 300,  user3);
+        Account account5 = new Account("8978", "654987", 77.46, 300,  user4);
+        Account account6 = new Account("4532", "951753", 67.46, 300,  user5);
+        Account account7 = new Account("9234", "987159", 6.46, 300,  user6);
+        Account account8 = new Account("9157", "356987", 1.46, 300,  user7);
+        Account account9 = new Account("6570", "458267", 0.46, 300,  user7);
 
         // save products
         accountRepository.save(account1);
