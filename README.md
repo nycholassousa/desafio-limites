@@ -13,12 +13,17 @@ Este repositório contém a atividade proposta [neste arquivo](https://github.co
 
 ### Windows
 
-A atividade foi realizada utilizando a IDE Intellij, assim, basta abrir o projeto que funcionará normalmente nesta IDE.
-Para outras IDEs, aconselho a importar o projeto.
+A atividade foi realizada utilizando a IDE Intellij, caso queira usar outra IDE, apenas importe o projeto.
 
 ### Linux
 
-TODO
+Para o linux, execute os seguintes comandos:
+
+```sh
+	cd to-project
+    mvn install
+	./mvnw clean package
+```
 
 ## Serviços Disponíveis
 

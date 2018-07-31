@@ -9,12 +9,14 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.data.jpa.repository.config.EnableJpaAuditing;
+import org.springframework.scheduling.annotation.EnableScheduling;
 
 import javax.transaction.Transactional;
 
 @SpringBootApplication
 @EnableJpaAuditing
-public class LimitesApplication implements CommandLineRunner {
+@EnableScheduling
+public class Application implements CommandLineRunner {
 
     @Autowired
     UserRepository userRepository;
@@ -23,13 +25,13 @@ public class LimitesApplication implements CommandLineRunner {
     AccountRepository accountRepository;
 
     public static void main(String[] args) {
-        SpringApplication.run(LimitesApplication.class, args);
+        SpringApplication.run(Application.class, args);
     }
 
     @Override
     public void run(String... arg0) throws Exception {
-        clearData();
-        saveData();
+        //clearData();
+        //saveData();
     }
 
     @Transactional

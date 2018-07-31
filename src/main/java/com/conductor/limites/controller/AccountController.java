@@ -35,14 +35,29 @@ public class AccountController {
         return accountRepository.findById(accountId).orElseThrow(() -> new ResourceNotFoundException("Account", "id", accountId));
     }
 
-    //Update an Account -- Set Balance
-    @PutMapping("/accounts/{id}")
-    public Account updateAccount(@PathVariable(value = "id") long accountId, @Valid @RequestBody Account details) {
+    //Credit a Value on Account
+    @PutMapping("/accounts/{id}/credit")
+    public Account creditAccount(@PathVariable(value = "id") long accountId, @Valid @RequestBody Double input) {
         Account account = accountRepository.findById(accountId).orElseThrow(() -> new ResourceNotFoundException("Account", "id", accountId));
+        account.setBalance(account.getBalance() + input);
 
-        account.setBalance(details.getBalance());
         Account updatedAccount = accountRepository.save(account);
         return updatedAccount;
+    }
+
+    //Debit a Value on Account
+    @PutMapping("/accounts/{id}/debit")
+    public Account debitAccount(@PathVariable(value = "id") long accountId, @Valid @RequestBody Double input) {
+        Account account = accountRepository.findById(accountId).orElseThrow(() -> new ResourceNotFoundException("Account", "id", accountId));
+
+        if (account.getBalance() < input) {
+            return null;
+        } else {
+            account.setBalance(account.getBalance() - input);
+
+            Account updatedAccount = accountRepository.save(account);
+            return updatedAccount;
+        }
     }
 
     //Delete an Account
