@@ -9,7 +9,6 @@ import com.conductor.desafio.service.UserService;
 import com.conductor.desafio.validator.UserValidator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
-import org.springframework.security.core.Authentication;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -23,6 +22,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
+import java.util.Objects;
 
 @Controller
 public class UserController {
@@ -49,7 +49,7 @@ public class UserController {
     }
 
     @RequestMapping(value = "/registration", method = RequestMethod.POST)
-    public String registration(@ModelAttribute("userForm") User userForm, BindingResult bindingResult, Model model) {
+    public String registration(@ModelAttribute("userForm") User userForm, BindingResult bindingResult) {
         userValidator.validate(userForm, bindingResult);
 
         if (bindingResult.hasErrors()) {
@@ -82,9 +82,9 @@ public class UserController {
         List<Account> accountsList = accountRepository.findAll();
         List<Account> aux = new ArrayList<>();
 
-        for (int i = 0; i < accountsList.size(); i++) {
-            if (accountsList.get(i).getUser().getId() == user.getId()) {
-                aux.add(accountsList.get(i));
+        for (Account anAccountsList : accountsList) {
+            if (Objects.equals(anAccountsList.getUser().getId(), user.getId())) {
+                aux.add(anAccountsList);
             }
         }
 

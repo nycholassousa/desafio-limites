@@ -4,6 +4,7 @@ import com.conductor.desafio.model.Account;
 import com.conductor.desafio.model.User;
 import com.conductor.desafio.repository.AccountRepository;
 import com.conductor.desafio.repository.UserRepository;
+import com.conductor.desafio.validator.AccountValidator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -19,6 +20,9 @@ import java.util.List;
 public class AccountController {
 
     @Autowired
+    private AccountValidator accountValidator;
+
+    @Autowired
     private AccountRepository accountRepository;
 
     @Autowired
@@ -32,13 +36,15 @@ public class AccountController {
     }
 
     @RequestMapping(value = "/registeraccount", method = RequestMethod.POST)
-    public String registration(@Valid @ModelAttribute("accountForm") Account accountForm, BindingResult bindingResult, Model model) {
+    public String registration(@Valid @ModelAttribute("accountForm") Account accountForm, Model model, BindingResult bindingResult) {
 
         UserDetails userDetails = (UserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         User user = userRepository.findByUsername(userDetails.getUsername());
 
+        accountValidator.validate(accountForm, bindingResult);
+
         if (bindingResult.hasErrors()) {
-            return "error";
+            return "registeraccount";
         }
 
         model.addAttribute("number", accountForm.getNumber());
