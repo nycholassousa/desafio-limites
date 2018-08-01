@@ -1,7 +1,6 @@
 package com.conductor.desafio.validator;
 
 import com.conductor.desafio.model.Account;
-import com.conductor.desafio.model.User;
 import org.springframework.stereotype.Component;
 import org.springframework.validation.Errors;
 import org.springframework.validation.ValidationUtils;
@@ -12,7 +11,7 @@ public class AccountValidator implements Validator {
 
     @Override
     public boolean supports(Class<?> aClass) {
-        return User.class.equals(aClass);
+        return Account.class.equals(aClass);
     }
 
     @Override

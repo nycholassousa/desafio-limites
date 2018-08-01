@@ -31,14 +31,12 @@
 <div class="container">
 
     <form:form method="POST" action="${contextPath}/credit/${id}" class="form-signin">
-        <h2 class="form-signin-heading">Credit a Value ${id}</h2>
+        <h2 class="form-signin-heading">Credit / Debit a Value</h2>
         <div class="form-group">
-            <label>Please specify the amount you would like to transfer: </label>
-            <span class="input-group-addon">Amount $</span>
-            <input th:value="${amount}" type="text" name="amount" id="amount" class="form-control"
-                   aria-label="Amount (to the nearest dollar)"/>
+            <input th:value="${amount}" type="number" step="0.01" min="-9999999999.99" max="9999999999.99" name="amount" id="amount" class="form-control"
+                   aria-label="Amount (to the nearest dollar)" placeholder="Amount $"/>
         </div>
-        <button class="btn btn-lg btn-primary btn-block" type="submit">Credit Value</button>
+        <button class="btn btn-lg btn-primary btn-block" type="submit">Credit / Debit Value</button>
     </form:form>
 
 </div>

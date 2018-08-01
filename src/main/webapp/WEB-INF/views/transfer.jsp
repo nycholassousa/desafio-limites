@@ -34,20 +34,14 @@
         <h2 class="form-signin-heading">Transfer Value</h2>
         <div class="form-group">
 
-            <label>Please specify the agency: </label>
-            <span class="input-group-addon">Agency</span>
-            <input value="${agency}" type="text" name="agency" id="agency" class="form-control"
-                   aria-label="Agency"/>
+            <input value="${agency}" type="number" name="agency" id="agency" class="form-control"
+                   aria-label="Agency" placeholder="Agency Number"/>
 
-            <label>Please specify the account number: </label>
-            <span class="input-group-addon">Account Number</span>
-            <input value="${number}" type="text" name="number" id="number" class="form-control"
-                   aria-label="Account Number"/>
+            <input value="${number}" type="number" name="number" id="number" class="form-control"
+                   aria-label="Account Number" placeholder="Account Number"/>
 
-            <label>Please specify the amount you would like to transfer: </label>
-            <span class="input-group-addon">Amount $</span>
-            <input value="${amount}" type="text" name="amount" id="amount" class="form-control"
-                   aria-label="Amount (to the nearest dollar)"/>
+            <input value="${amount}" type="number" step="0.01" min="-9999999999.99" max="9999999999.99" name="amount" id="amount" class="form-control"
+                   aria-label="Amount (to the nearest dollar)" placeholder="Amount"/>
         </div>
         <button class="btn btn-lg btn-primary btn-block" type="submit">Transfer Value</button>
     </form:form>

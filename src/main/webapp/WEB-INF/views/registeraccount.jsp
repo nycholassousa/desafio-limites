@@ -34,7 +34,7 @@
         <h2 class="form-signin-heading">Create your account</h2>
         <spring:bind path="agency">
             <div class="form-group ${status.error ? 'has-error' : ''}">
-                <form:input type="text" path="agency" class="form-control" placeholder="Agency"
+                <form:input type="number" path="agency" class="form-control" placeholder="Agency"
                             autofocus="true"></form:input>
                 <form:errors path="agency"></form:errors>
             </div>
