@@ -36,11 +36,20 @@
             <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
         </form>
 
+        <form id="editUser" method="GET" action="${contextPath}/edituser/">
+            <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
+        </form>
+
         <h2>Welcome, ${pageContext.request.userPrincipal.name}!</h2>
         <button type="button" class="btn btn-danger" onclick="document.forms['logoutForm'].submit()">Logout</button>
+
         <button type="button" class="btn btn-primary" onclick="document.forms['createAccount'].submit()">Create a Bank
             Account
         </button>
+
+        <!--
+        <button type="button" class="btn btn-info" onclick="document.forms['editUser'].submit()">Edit User</button>
+        -->
     </c:if>
 
 
@@ -63,9 +72,12 @@
                 <td>${acc.balance}</td>
                 <td>${acc.overdraft + acc.balance}</td>
                 <td>
+                    <spring:url value="/credit/${acc.id}" var="creditValue"/>
+                    <button class="btn btn-primary" onclick="location.href='${creditValue}'">Credit/Debit</button>
 
-                    <spring:url value="/credit/${acc.id}" var="updateUrl" />
-                    <button class="btn btn-primary" onclick="location.href='${updateUrl}'">Credit/Debit</button>
+
+                    <spring:url value="/transfer/${acc.id}" var="transferValue"/>
+                    <button class="btn btn-primary" onclick="location.href='${transferValue}'">Transfer Value</button>
                 </td>
             </tr>
         </c:forEach>

@@ -8,6 +8,9 @@ import com.conductor.desafio.service.SecurityService;
 import com.conductor.desafio.service.UserService;
 import com.conductor.desafio.validator.UserValidator;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
@@ -18,6 +21,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 
 @Controller
@@ -72,7 +76,7 @@ public class UserController {
 
     @RequestMapping(value = {"/", "/welcome"}, method = RequestMethod.GET)
     public String welcome(Model model) {
-        UserDetails userDetails = (UserDetails)SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        UserDetails userDetails = (UserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         User user = userRepository.findByUsername(userDetails.getUsername());
 
         List<Account> accountsList = accountRepository.findAll();
@@ -87,5 +91,28 @@ public class UserController {
         model.addAttribute("accounts", aux);
 
         return "welcome";
+    }
+
+    @RequestMapping(value = "/edituser", method = RequestMethod.GET)
+    public String betweenAccounts(Model model) {
+        UserDetails userDetails = (UserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        User user = userRepository.findByUsername(userDetails.getUsername());
+
+        model.addAttribute("username", user.getUsername());
+
+        return "edituser";
+    }
+
+    @RequestMapping(value = "/edituser", method = RequestMethod.POST)
+    public String betweenAccountsPost(@ModelAttribute("username") String username) {
+
+        User currentUser = userRepository.findByUsername(username);
+
+        Collection<SimpleGrantedAuthority> nowAuthorities = (Collection<SimpleGrantedAuthority>) SecurityContextHolder
+                .getContext().getAuthentication().getAuthorities();
+        UsernamePasswordAuthenticationToken authentication = new UsernamePasswordAuthenticationToken(username, currentUser.getPassword(), nowAuthorities);
+        SecurityContextHolder.getContext().setAuthentication(authentication);
+
+        return "redirect:/welcome";
     }
 }

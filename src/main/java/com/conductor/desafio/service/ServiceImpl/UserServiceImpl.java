@@ -1,8 +1,9 @@
-package com.conductor.desafio.service;
+package com.conductor.desafio.service.ServiceImpl;
 
 import com.conductor.desafio.model.User;
 import com.conductor.desafio.repository.RoleRepository;
 import com.conductor.desafio.repository.UserRepository;
+import com.conductor.desafio.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;

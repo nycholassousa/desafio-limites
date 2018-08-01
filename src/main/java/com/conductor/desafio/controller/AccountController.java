@@ -13,6 +13,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import java.util.List;
 
 @Controller
 public class AccountController {
@@ -52,7 +53,7 @@ public class AccountController {
     }
 
     @RequestMapping(value = "/credit/{id}", method = RequestMethod.GET)
-    public String betweenAccounts(@PathVariable("id") Long id, Model model) {
+    public String creditDebitValue(@PathVariable("id") Long id, Model model) {
 
         model.addAttribute("amount", "");
         model.addAttribute("id", accountRepository.findOne(id).getId());
@@ -61,11 +62,44 @@ public class AccountController {
     }
 
     @RequestMapping(value = "/credit/{id}", method = RequestMethod.POST)
-    public String betweenAccountsPost(@ModelAttribute("amount") double amount, @PathVariable("id") Long id) throws Exception {
+    public String creditDebitValue(@ModelAttribute("amount") double amount, @PathVariable("id") Long id) {
         Account currentAccount = accountRepository.findOne(id);
         currentAccount.setBalance(currentAccount.getBalance() + amount);
 
         accountRepository.save(currentAccount);
+
+        return "redirect:/welcome";
+    }
+
+    @RequestMapping(value = "/transfer/{id}", method = RequestMethod.GET)
+    public String betweenAccounts(@PathVariable("id") Long id, Model model) {
+
+        model.addAttribute("agency", "");
+        model.addAttribute("number", "");
+        model.addAttribute("amount", "");
+        model.addAttribute("id", accountRepository.findOne(id).getId());
+
+        return "transfer";
+    }
+
+    @RequestMapping(value = "/transfer/{id}", method = RequestMethod.POST)
+    public String betweenAccounts(@ModelAttribute("agency") String agency, @ModelAttribute("number") String number, @ModelAttribute("amount") double amount, @PathVariable("id") Long id) {
+        Account currentAccount = accountRepository.findOne(id);
+
+        List<Account> accountsList = accountRepository.findAll();
+
+        for (Account anAccountsList : accountsList) {
+            if (anAccountsList.getAgency().equals(agency) && anAccountsList.getNumber().equals(number)) {
+
+                currentAccount.setBalance(currentAccount.getBalance() - amount);
+                anAccountsList.setBalance(anAccountsList.getBalance() + amount);
+
+                accountRepository.save(currentAccount);
+                accountRepository.save(anAccountsList);
+
+                break;
+            }
+        }
 
         return "redirect:/welcome";
     }

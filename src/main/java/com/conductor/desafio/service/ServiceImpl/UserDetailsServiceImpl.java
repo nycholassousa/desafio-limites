@@ -1,4 +1,4 @@
-package com.conductor.desafio.service;
+package com.conductor.desafio.service.ServiceImpl;
 
 import com.conductor.desafio.model.Role;
 import com.conductor.desafio.model.User;

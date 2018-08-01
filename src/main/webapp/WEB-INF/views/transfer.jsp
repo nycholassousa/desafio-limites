@@ -14,7 +14,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Log in</title>
+    <title>Transfer Value</title>
 
     <link href="${contextPath}/resources/css/bootstrap.min.css" rel="stylesheet">
     <link href="${contextPath}/resources/css/common.css" rel="stylesheet">
@@ -30,22 +30,27 @@
 
 <div class="container">
 
-    <form method="POST" action="${contextPath}/login" class="form-signin">
-        <h2 class="form-heading">Log in</h2>
+    <form:form method="POST" action="${contextPath}/transfer/${id}" class="form-signin">
+        <h2 class="form-signin-heading">Transfer Value</h2>
+        <div class="form-group">
 
-        <div class="form-group ${error != null ? 'has-error' : ''}">
-            <span>${message}</span>
-            <input name="username" type="text" class="form-control" placeholder="Username"
-                   autofocus="true"/>
-            <input name="password" type="password" class="form-control" placeholder="Password"/>
-            <span>${error}</span>
-            <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
+            <label>Please specify the agency: </label>
+            <span class="input-group-addon">Agency</span>
+            <input value="${agency}" type="text" name="agency" id="agency" class="form-control"
+                   aria-label="Agency"/>
 
-            <button class="btn btn-lg btn-primary btn-block" type="submit">Log In</button>
-            <h4 class="text-center"><a href="${contextPath}/registration">Create an account</a></h4>
+            <label>Please specify the account number: </label>
+            <span class="input-group-addon">Account Number</span>
+            <input value="${number}" type="text" name="number" id="number" class="form-control"
+                   aria-label="Account Number"/>
+
+            <label>Please specify the amount you would like to transfer: </label>
+            <span class="input-group-addon">Amount $</span>
+            <input value="${amount}" type="text" name="amount" id="amount" class="form-control"
+                   aria-label="Amount (to the nearest dollar)"/>
         </div>
-
-    </form>
+        <button class="btn btn-lg btn-primary btn-block" type="submit">Transfer Value</button>
+    </form:form>
 
 </div>
 <!-- /container -->
