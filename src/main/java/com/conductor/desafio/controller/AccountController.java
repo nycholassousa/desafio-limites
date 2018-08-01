@@ -12,6 +12,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.validation.Valid;
 import java.util.List;
@@ -106,6 +107,13 @@ public class AccountController {
                 break;
             }
         }
+
+        return "redirect:/welcome";
+    }
+
+    @RequestMapping(value = "/delete/{id}", method = {RequestMethod.POST, RequestMethod.GET})
+    public String deleteAccount(@PathVariable("id") Long id){
+        accountRepository.delete(id);
 
         return "redirect:/welcome";
     }

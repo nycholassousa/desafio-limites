@@ -75,9 +75,11 @@
                     <spring:url value="/credit/${acc.id}" var="creditValue"/>
                     <button class="btn btn-primary" onclick="location.href='${creditValue}'">Credit/Debit</button>
 
-
                     <spring:url value="/transfer/${acc.id}" var="transferValue"/>
                     <button class="btn btn-primary" onclick="location.href='${transferValue}'">Transfer Value</button>
+
+                    <spring:url value="/delete/${acc.id}" var="deleteAccount"/>
+                    <button class="btn btn-danger" onclick="location.href='${deleteAccount}'">Delete Account</button>
                 </td>
             </tr>
         </c:forEach>
