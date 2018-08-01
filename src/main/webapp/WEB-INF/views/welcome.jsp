@@ -32,7 +32,13 @@
             <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
         </form>
 
-        <h2>Welcome ${pageContext.request.userPrincipal.name} | <a onclick="document.forms['logoutForm'].submit()">Logout</a></h2>
+        <form id="createAccount" method="GET" action="${contextPath}/registeraccount">
+            <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
+        </form>
+
+        <h2>Welcome, ${pageContext.request.userPrincipal.name}!</h2>
+        <button type="button" class="btn btn-danger" onclick="document.forms['logoutForm'].submit()">Logout</button>
+        <button type="button" class="btn btn-primary" onclick="document.forms['createAccount'].submit()">Create a Bank Account</button>
 
     </c:if>
 
@@ -48,7 +54,7 @@
         </tr>
         </thead>
         <tbody>
-        <c:forEach  items="${accounts}" var ="acc">
+        <c:forEach items="${accounts}" var="acc">
             <tr>
                 <td>${acc.agency}</td>
                 <td>${acc.number}</td>
@@ -58,8 +64,6 @@
         </c:forEach>
         </tbody>
     </table>
-
-
 
 
 </div>
