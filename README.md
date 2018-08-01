@@ -18,7 +18,7 @@ A atividade foi realizada usando o IntelliJ IDEA, porém, para executar, era usa
 	mvn jetty:run
 ```
 
-Assim, para executar o projeto, deve-se ter o maven instalado em seu computador, juntamento com as variáveis de ambiente configuradas.
+Assim, para executar o projeto, deve-se ter o maven instalado em seu computador, juntamente com as variáveis de ambiente do java e maven configuradas.
 
 ## Informações Adicionais
 
