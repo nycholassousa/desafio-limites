@@ -10,9 +10,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 
@@ -53,4 +51,22 @@ public class AccountController {
         return "redirect:/welcome";
     }
 
+    @RequestMapping(value = "/credit/{id}", method = RequestMethod.GET)
+    public String betweenAccounts(@PathVariable("id") Long id, Model model) {
+
+        model.addAttribute("amount", "");
+        model.addAttribute("id", accountRepository.findOne(id).getId());
+
+        return "credit";
+    }
+
+    @RequestMapping(value = "/credit/{id}", method = RequestMethod.POST)
+    public String betweenAccountsPost(@ModelAttribute("amount") double amount, @PathVariable("id") Long id) throws Exception {
+        Account currentAccount = accountRepository.findOne(id);
+        currentAccount.setBalance(currentAccount.getBalance() + amount);
+
+        accountRepository.save(currentAccount);
+
+        return "redirect:/welcome";
+    }
 }
